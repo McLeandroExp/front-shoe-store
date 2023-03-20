@@ -1,0 +1,74 @@
+.galleryDskActive {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  // height: 110vh;
+  padding-top: 100px;
+  background-color: rgba($color: #000000, $alpha: 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  overflow: hidden;
+}
+.gdagallery {
+  width: 450px;
+  height: 650px;
+}
+.gdacontent {
+  position: relative;
+  width: 450px;
+  height: 450px;
+}
+.gdeskimg{
+  // display: block;
+  border-radius: 20px;
+}
+.gdskbtn {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  top: 45%;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: none;
+}
+.gdskbtn:first-child {
+  left: -22px;
+  background-image: url("./assets/images/icon-previous.svg");
+  z-index: 50;
+}
+.scnd{
+  right: -22px;
+  background-image: url("./assets/images/icon-next.svg");
+}
+.gsaclosebtn {
+  position: absolute;
+  top: -30px;
+  right: -10px;
+  width: 25px;
+  height: 25px;
+  background: $White;
+  mask-image: url("./assets/images/icon-close.svg");
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("./assets/images/icon-close.svg");
+  -webkit-mask-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: none;
+}
+.gdeskimg {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.dskltimgs {
+  width: 100%;
+  padding: 30px 30px;
+  display: flex;
+  justify-content: space-evenly;
+}

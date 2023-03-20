@@ -1,0 +1,38 @@
+.menu {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+.disabled{
+  width: 0;
+  display: none;
+}
+.clickable-space {
+  background-color: #fff;
+  width: 65vw;
+  height: 100vh;
+}
+.menu__container {
+  margin-top: 110px;
+  width: 100%;
+  height: 200px;
+  padding-left: 37px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.menu__item {
+  text-transform: capitalize;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.transparent-space {
+  background-color: rgba($color: #000000, $alpha: 0.75);
+  width: 35vw;
+  height: 100vh;
+}

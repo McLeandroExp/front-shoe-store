@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-between;
+  padding: 30px 30px;
+  padding-left: 95px;
+}
+.menu-logo_container{
+    display: flex;
+}
+.logo_container {
+  padding-right: 45px;
+}
+.hor_menu {
+  display: flex;
+}
+.hor_menu_item{
+    padding-right: 15px;
+}
+.dis {
+  display: none;
+  width: 0;
+}
+.article_rigth_items {
+  display: flex;
+  justify-self: flex-end;
+  align-self: flex-end;
+
+  & img {
+    display: block;
+    height: 20px;
+  }
+
+  & img:last-child {
+    padding-left: 18px;
+  }
+}
+.lcontainer{
+  position: relative;
+}
+.nlcarticles{
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  // padding: 5px;
+  color: $White;
+  background-color: $Orange;
+  border-radius: 4px;
+  width: 15px;
+  height: 12px;
+  font-size: .7rem;
+  text-align: center;
+}

@@ -1,0 +1,110 @@
+.commerce-info {
+  padding: 5% 5% 20% 5%;
+}
+.commerce-name {
+  text-transform: uppercase;
+  color: $Orange;
+  font-size: 0.8rem;
+}
+.commerce-product-name {
+  margin-top: 10px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: $Very-vark-blue;
+}
+.product-description {
+  margin-top: 20px;
+  color: $Dark-grayish-blue;
+}
+.sneaker__price {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.sneaker__aft-price {
+  display: flex;
+}
+.actual-price {
+  min-width: 100px;
+  font-size: 1.4rem;
+  color: $Very-vark-blue;
+}
+.discount {
+  background-color: $Pale-orange;
+  color: $Orange;
+  border-radius: 2px;
+  line-height: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 0.8rem;
+}
+.sneaker__bef-price {
+  text-decoration: line-through;
+  color: $Dark-grayish-blue;
+  font-size: 0.9rem;
+  line-height: 20px;
+}
+.price-controllers {
+  display: flex;
+  background-color: $Light-grayish-blue;
+  margin-top: 25px;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.quantity {
+  font-size: 1.2rem;
+}
+.change_price {
+  background-color: transparent;
+  border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.change_price:first-child {
+  background-image: url("./assets/images/icon-minus.svg");
+}
+.change_price:last-child {
+  background-image: url("./assets/images/icon-plus.svg");
+}
+
+.add-product-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background-color: $Orange;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: $White;
+  cursor: pointer;
+}
+.buy-icon {
+  width: 40px;
+  height: 20px;
+  background: $White;
+  mask-image: url("./assets/images/icon-cart.svg");
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("./assets/images/icon-cart.svg");
+  -webkit-mask-repeat: no-repeat;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-right: 40px;
+}
+@media screen and (min-width: 780px) {
+  .commerce-info {
+    width: 60%;
+    padding: 0% 5% 20% 15%;
+  }
+  .commerce-product-name {
+    font-size: 2.2rem;
+  }
+}

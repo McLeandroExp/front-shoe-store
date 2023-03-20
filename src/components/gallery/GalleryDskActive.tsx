@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+// import { useScreenWidthHeight } from "../../hooks/useScreenWidthHeight";
 
 type galleryDskProps = {
   setShowDSKG: React.Dispatch<React.SetStateAction<boolean>>;
@@ -6,6 +7,12 @@ type galleryDskProps = {
 export const GalleryDskActive = ({ setShowDSKG }: galleryDskProps) => {
   const [imgPos, setImgPos] = useState(1);
   const [direccion, setDireccion] = useState("derecha");
+  // const { screenHeight } = useScreenWidthHeight();
+  const refDiv = useRef<HTMLDivElement | null>(null);
+  // useEffect(() => {
+  //   if (refDiv.current) refDiv.current.style.height = String(screenHeight);
+  //   console.log("cambiando height " + screenHeight);
+  // }, [screenHeight]);
 
   const [imageUrl, setImageUrl] = useState<string>();
 
@@ -45,7 +52,7 @@ export const GalleryDskActive = ({ setShowDSKG }: galleryDskProps) => {
     };
   }, [imgPos, direccion]);
   return (
-    <div className="galleryDskActive">
+    <div className="galleryDskActive" ref={refDiv}>
       <section className="gdagallery">
         <div className="gdacontent">
           <button

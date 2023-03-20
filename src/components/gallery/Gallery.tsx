@@ -1,11 +1,11 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import { useScreenWidth } from "../../hooks/useScreenWidth";
+import { useScreenWidthHeight } from "../../hooks/useScreenWidthHeight";
 
 type galleryProps = {
   setShowDSKG: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export const Gallery = ({ setShowDSKG }: galleryProps) => {
-  const { screenWidth } = useScreenWidth();
+  const { screenWidth } = useScreenWidthHeight();
   const [imgPos, setImgPos] = useState(1);
   const [imageUrl, setImageUrl] = useState<string>();
 

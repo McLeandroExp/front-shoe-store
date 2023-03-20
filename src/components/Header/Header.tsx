@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useScreenWidth } from "../../hooks/useScreenWidth";
+import { useScreenWidthHeight } from "../../hooks/useScreenWidthHeight";
 import { EcommerceContext } from "../../context/EcommerceContext";
 type HeaderProps = {
   showCard: boolean;
@@ -7,7 +7,7 @@ type HeaderProps = {
 
 export const Header = ({ showCard }: HeaderProps) => {
   const minWidth = 780;
-  const { screenWidth } = useScreenWidth();
+  const { screenWidth } = useScreenWidthHeight();
   const { nProducts } = useContext(EcommerceContext);
   return (
     <header className="header">

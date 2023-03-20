@@ -2,7 +2,7 @@ import { ButtonMenu } from "./components/menu/ButtonMenu";
 import { Header } from "./components/Header/Header";
 import { Menu } from "./components/menu/Menu";
 import { EcommerceProvider } from "./context/EcommerceProvider";
-import { useScreenWidth } from "./hooks/useScreenWidth";
+import { useScreenWidthHeight } from "./hooks/useScreenWidthHeight";
 import { Gallery } from "./components/gallery/Gallery";
 import { CommerceInfo } from "./components/commerceInfo/CommerceInfo";
 import { Buycard } from "./components/buycard/Buycard";
@@ -11,7 +11,7 @@ import { GalleryDskActive } from "./components/gallery/GalleryDskActive";
 
 function EcommerceApp() {
   const minScreenWidth = 780;
-  const { screenWidth } = useScreenWidth();
+  const { screenWidth } = useScreenWidthHeight();
   const [showCard, setShowCard] = useState<boolean>(false);
   const [showDSKG, setShowDSKG] = useState<boolean>(false);
   return (

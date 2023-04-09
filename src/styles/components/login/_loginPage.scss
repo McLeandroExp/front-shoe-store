@@ -1,0 +1,97 @@
+.login-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.login-form-image-container {
+  margin-bottom: 2rem;
+}
+
+.login-form-image {
+  width: 100%;
+  max-width: 300px;
+}
+
+.login-form {
+  width: 100%;
+}
+.login-form-field {
+  margin-bottom: 1rem;
+}
+.login-form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.login-form-input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid $Grayish-blue;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba($Very-vark-blue, 0.2);
+}
+
+.login-form-button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: $Orange;
+  color: $White;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba($Very-vark-blue, 0.2);
+
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  &:hover {
+    background-color: lighten($Orange, 10%);
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .login-form-container {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .login-form-container {
+    max-width: 600px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .login-form-image-container {
+    margin-right: 2rem;
+    margin-bottom: 0;
+    max-width: 300px;
+  }
+
+  .login-form {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .login-form-container {
+    max-width: 800px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .login-form-container {
+    max-width: 1000px;
+  }
+}

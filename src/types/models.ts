@@ -17,11 +17,17 @@ interface ICategoria {
 interface IProducto {
   nombre: string;
   estado: boolean;
-  usuario: String | IUsuario;
+  usuario: string;
   precio: number;
-  categoria: String | ICategoria;
-  descripcion?: string;
+  categoria: {
+    nombre: string;
+    _id: string;
+  };
+  descripcion: string;
   imgs: string[];
   disponible: boolean;
+  descuento: number;
+  sexo: string;
+  nombre_empresa: string;
 }
 export type { IUsuario, ICategoria, IProducto };

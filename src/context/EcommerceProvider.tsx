@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EcommerceContext } from "./EcommerceContext";
+import { IUsuario } from "../types/models";
 
 interface props {
   children: JSX.Element | JSX.Element[];
@@ -7,7 +8,10 @@ interface props {
 export const EcommerceProvider = ({ children }: props) => {
   const [nProducts, setNProducts] = useState(0);
   const [activeMenu, setActiveMenu] = useState(true);
-  const [isLogged, setIsLogged] = useState(false);
+  const [userToken, setUserToken] = useState<{
+    user: IUsuario;
+    token: string;
+  } | null>(null);
   return (
     <EcommerceContext.Provider
       value={{
@@ -15,8 +19,8 @@ export const EcommerceProvider = ({ children }: props) => {
         setNProducts,
         activeMenu,
         setActiveMenu,
-        isLogged,
-        setIsLogged,
+        userToken,
+        setUserToken,
       }}
     >
       {children}

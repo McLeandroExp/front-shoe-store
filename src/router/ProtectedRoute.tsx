@@ -1,8 +1,8 @@
 import { FC, ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-
+import { IUsuario } from "../types/models";
 interface Props {
-  user: any;
+  user: { user: IUsuario; token: string } | null;
   redirectTo?: string;
   children: ReactNode | ReactNode[];
 }

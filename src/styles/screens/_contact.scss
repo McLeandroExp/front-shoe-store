@@ -1,0 +1,137 @@
+/* Estilos base */
+.contact-page {
+  background-color: $Light-grayish-blue;
+  padding: 40px;
+}
+
+.contact-page__title {
+  color: $Very-vark-blue;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.contact-page__description {
+  color: $Dark-grayish-blue;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.contact-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-page__label {
+  color: $Dark-grayish-blue;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.contact-page__input,
+.contact-page__textarea {
+  border: 1px solid $Dark-grayish-blue;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.contact-page__button {
+  background-color: $Orange;
+  color: $White;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-page__button:hover {
+  background-color: darken($Orange, 10%);
+}
+
+/* Estilos para los colores especificados */
+.contact-page__title {
+  color: $Very-vark-blue;
+}
+
+.contact-page__description {
+  color: $Dark-grayish-blue;
+}
+
+.contact-page {
+  background-color: $Light-grayish-blue;
+}
+
+.contact-page__label {
+  color: $Dark-grayish-blue;
+}
+
+.contact-page__input,
+.contact-page__textarea {
+  border-color: $Dark-grayish-blue;
+}
+
+.contact-page__button {
+  background-color: $Orange;
+  color: $White;
+}
+
+/* Media queries para hacer la página responsive */
+@media only screen and (min-width: 768px) {
+  .contact-page {
+    padding: 80px;
+  }
+
+  .contact-page__form {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .contact-page__label {
+    width: 30%;
+  }
+
+  .contact-page__input,
+  .contact-page__textarea {
+    width: 65%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .contact-page {
+    padding: 120px;
+  }
+
+  .contact-page__form {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .contact-page__label {
+    width: 25%;
+  }
+
+  .contact-page__input,
+  .contact-page__textarea {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .contact-page__form {
+    width: 50%;
+  }
+
+  .contact-page__label {
+    width: 20%;
+  }
+
+  .contact-page__input,
+  .contact-page__textarea {
+    width: 80%;
+  }
+}

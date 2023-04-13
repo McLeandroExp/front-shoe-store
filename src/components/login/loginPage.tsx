@@ -3,6 +3,8 @@ import { UsuarioLogin } from "../../types/req_res";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { EcommerceContext } from "../../context/EcommerceContext";
 
 function LoginPage() {
   const { formulario, handleChange, reset } = useForm({
@@ -10,6 +12,8 @@ function LoginPage() {
     login_password: "",
   });
   const { login_correo, login_password } = formulario;
+
+  const { setUserToken } = useContext(EcommerceContext);
 
   const navigate = useNavigate();
 
@@ -24,7 +28,7 @@ function LoginPage() {
       const { ok, msg } = resp;
       if (ok) {
         const { usuario, token } = resp;
-        console.log(usuario, token);
+        setUserToken({ user: usuario!, token: token! });
         navigate("/");
       } else {
         Swal.fire({
@@ -40,8 +44,12 @@ function LoginPage() {
     reset();
   };
 
-  const handleAppRegistration = () => {
+  const handleAppRegistration = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     // Handle app registration logic here
+    event.preventDefault();
+    navigate("/sign");
   };
 
   const handleGoogleRegistration = () => {
@@ -50,13 +58,6 @@ function LoginPage() {
 
   return (
     <section className="login-form-container">
-      <figure className="login-form-image-container">
-        <img
-          className="login-form-image"
-          src="./assets/images/logo.svg"
-          alt="Your Image"
-        />
-      </figure>
       <form className="login-form" onSubmit={handleLogin}>
         <div className="login-form-field">
           <label className="login-form-label">Correo electrónico</label>

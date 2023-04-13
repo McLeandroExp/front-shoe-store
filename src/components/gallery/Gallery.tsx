@@ -1,29 +1,46 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useScreenWidthHeight } from "../../hooks/useScreenWidthHeight";
+import { useQuery, useQueryClient } from "react-query";
+import { getProducts } from "../../helpers/queries";
+import { IProducto } from "../../types/models";
 
 type galleryProps = {
   setShowDSKG: React.Dispatch<React.SetStateAction<boolean>>;
+  productPos: number;
+  setProductPos: React.Dispatch<React.SetStateAction<number>>;
 };
-export const Gallery = ({ setShowDSKG }: galleryProps) => {
+export const Gallery = ({
+  setShowDSKG,
+  productPos,
+  setProductPos,
+}: galleryProps) => {
   const { screenWidth } = useScreenWidthHeight();
-  const [imgPos, setImgPos] = useState(1);
-  const [imageUrl, setImageUrl] = useState<string>();
+  const { data: products, isLoading } = useQuery(["getProducts"], getProducts);
+  const [imgs, setImgs] = useState<string[][] | undefined>(undefined);
+  const [imgPos, setImgPos] = useState(0);
 
   useEffect(() => {
-    import(`../../images/image-product-${imgPos}.jpg`).then((url) =>
-      setImageUrl(url.default)
-    );
-  }, [imgPos]);
+    setImgs(products?.map((product) => product.imgs));
+  }, [products]);
 
-  const handleImgMove = (direction: string, limit: number) => {
-    direction === "derecha"
-      ? imgPos < limit
-        ? setImgPos(imgPos + 1)
-        : setImgPos(1)
-      : imgPos > 1
-      ? setImgPos(imgPos - 1)
-      : setImgPos(limit);
+  const handleProdMove = (direction: string, limit: number | undefined) => {
+    if (limit) {
+      direction === "derecha"
+        ? productPos < limit - 1
+          ? setProductPos((p) => p + 1)
+          : setProductPos(0)
+        : productPos > 0
+        ? setProductPos((p) => p - 1)
+        : setProductPos(limit - 1);
+    }
   };
+
   useLayoutEffect(() => {
     const img = document.querySelector(".galleryimg");
     img?.classList.add("animate__pulse");
@@ -46,10 +63,16 @@ export const Gallery = ({ setShowDSKG }: galleryProps) => {
         <button
           aria-label="move right"
           className="btn-cambiar-img"
-          onClick={() => handleImgMove("izquierda", 4)}
+          onClick={() => handleProdMove("izquierda", imgs?.length)}
         ></button>
         <img
-          src={imageUrl}
+          src={
+            isLoading
+              ? "./assets/images/loading-img.gif"
+              : imgs
+              ? imgs[productPos][imgPos]
+              : ""
+          }
           alt="product"
           onClick={() => {
             screenWidth >= 780 && setShowDSKG(true);
@@ -59,33 +82,57 @@ export const Gallery = ({ setShowDSKG }: galleryProps) => {
         <button
           aria-label="move left"
           className="btn-cambiar-img"
-          onClick={() => handleImgMove("derecha", 4)}
+          onClick={() => handleProdMove("derecha", imgs?.length)}
         ></button>
       </div>
       <div className="littleimages">
         <img
-          src="./assets/images/image-product-1-thumbnail.jpg"
+          src={
+            isLoading
+              ? "./assets/images/loading-img.gif"
+              : imgs
+              ? imgs[productPos][0]
+              : "./assets/images/image-product-1-thumbnail.jpg"
+          }
+          alt="thumbnail"
+          className="littleimage"
+          onClick={() => setImgPos(0)}
+        />
+        <img
+          src={
+            isLoading
+              ? "./assets/images/loading-img.gif"
+              : imgs
+              ? imgs[productPos][1]
+              : "./assets/images/image-product-2-thumbnail.jpg"
+          }
           alt="thumbnail"
           className="littleimage"
           onClick={() => setImgPos(1)}
         />
         <img
-          src="./assets/images/image-product-2-thumbnail.jpg"
+          src={
+            isLoading
+              ? "./assets/images/loading-img.gif"
+              : imgs
+              ? imgs[productPos][2]
+              : "./assets/images/image-product-1-thumbnail.jpg"
+          }
           alt="thumbnail"
           className="littleimage"
           onClick={() => setImgPos(2)}
         />
         <img
-          src="./assets/images/image-product-3-thumbnail.jpg"
+          src={
+            isLoading
+              ? "./assets/images/loading-img.gif"
+              : imgs
+              ? imgs[productPos][3]
+              : "./assets/images/image-product-1-thumbnail.jpg"
+          }
           alt="thumbnail"
           className="littleimage"
           onClick={() => setImgPos(3)}
-        />
-        <img
-          src="./assets/images/image-product-4-thumbnail.jpg"
-          alt="thumbnail"
-          className="littleimage"
-          onClick={() => setImgPos(4)}
         />
       </div>
     </div>

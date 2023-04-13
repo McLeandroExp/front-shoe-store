@@ -10,4 +10,27 @@ type UsuarioLoginResp = {
   token: string | null;
   msg: string;
 };
-export type { UsuarioLogin, UsuarioLoginResp };
+type UsuarioRegister = {
+  nombre: string;
+  correo: string;
+  password: string;
+};
+type errorObj = {
+  value?: string;
+  msg: string;
+  param: string;
+  location: string;
+};
+type UsuarioRegisterResp = {
+  ok: boolean;
+  msg: string;
+  body: { usuario: IUsuario; token: string } | null;
+  errors: errorObj[] | null;
+};
+
+export type {
+  UsuarioLogin,
+  UsuarioLoginResp,
+  UsuarioRegister,
+  UsuarioRegisterResp,
+};

@@ -1,27 +1,20 @@
-import {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
-import { useQuery } from "react-query";
-import { getProducts } from "../../helpers/queries";
+import { FC, useContext, useLayoutEffect, useRef, useState } from "react";
 import { EcommerceContext } from "../../context/EcommerceContext";
 // import { useScreenWidthHeight } from "../../hooks/useScreenWidthHeight";
 
-export const GalleryDskActive = () => {
+interface GalleryDskActiveProps {
+  imgs: string[][] | undefined;
+  isLoading: boolean;
+}
+
+export const GalleryDskActive: FC<GalleryDskActiveProps> = ({
+  imgs,
+  isLoading,
+}) => {
   const { setShowDSKG, productPos } = useContext(EcommerceContext);
   const [imgPos, setImgPos] = useState(0);
   const [direccion, setDireccion] = useState("derecha");
-  const [imgs, setImgs] = useState<string[][] | undefined>(undefined);
   const refDiv = useRef<HTMLDivElement | null>(null);
-
-  const { data: products, isLoading } = useQuery(["getProducts"], getProducts);
-
-  useEffect(() => {
-    setImgs(products?.map((product) => product.imgs));
-  }, [products]);
 
   const handleImgMove = (direction: string, limit: number | undefined) => {
     if (limit) {

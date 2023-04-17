@@ -9,6 +9,12 @@ export type EcommerceContextProps = {
   setUserToken: React.Dispatch<
     React.SetStateAction<{ user: IUsuario; token: string } | null>
   >;
+  showCard: boolean;
+  setShowCard: React.Dispatch<React.SetStateAction<boolean>>;
+  showDSKG: boolean;
+  setShowDSKG: React.Dispatch<React.SetStateAction<boolean>>;
+  productPos: number;
+  setProductPos: React.Dispatch<React.SetStateAction<number>>;
 };
 export const EcommerceContext = createContext<EcommerceContextProps>(
   {} as EcommerceContextProps

@@ -1,16 +1,14 @@
-import ErrorPage from "../components/error/error-page";
-import LoginPage from "../components/login/loginPage";
-import SignInPage from "../components/login/signInPage";
 import EcommerceApp from "../EcommerceApp";
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { ProtectedRoute } from "./ProtectedRoute";
 import { useContext } from "react";
 import { EcommerceContext } from "../context/EcommerceContext";
 import { LandingPage } from "../screens/LandingPage";
 import { Gender } from "../screens/Gender";
 import { About } from "../screens/About";
 import { Contact } from "../screens/Contact";
+import ErrorPage from "../screens/Error-Page";
+import LoginPage from "../screens/loginPage";
+import SignInPage from "../screens/signInPage";
 import { Collections } from "../screens/Collections";
 
 const EcommerceRouter = () => {
@@ -37,12 +35,12 @@ const EcommerceRouter = () => {
           />
           <Route
             path="/men"
-            element={<Gender />}
+            element={<Gender gender="hombre" />}
             errorElement={<ErrorPage />}
           />
           <Route
             path="/women"
-            element={<Gender />}
+            element={<Gender gender="mujer" />}
             errorElement={<ErrorPage />}
           />
           <Route

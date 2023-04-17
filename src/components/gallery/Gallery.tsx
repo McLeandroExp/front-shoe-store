@@ -1,29 +1,23 @@
 import {
   useCallback,
+  useContext,
   useEffect,
   useLayoutEffect,
   useMemo,
   useState,
 } from "react";
 import { useScreenWidthHeight } from "../../hooks/useScreenWidthHeight";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { getProducts } from "../../helpers/queries";
-import { IProducto } from "../../types/models";
+import { EcommerceContext } from "../../context/EcommerceContext";
 
-type galleryProps = {
-  setShowDSKG: React.Dispatch<React.SetStateAction<boolean>>;
-  productPos: number;
-  setProductPos: React.Dispatch<React.SetStateAction<number>>;
-};
-export const Gallery = ({
-  setShowDSKG,
-  productPos,
-  setProductPos,
-}: galleryProps) => {
+export const Gallery = () => {
   const { screenWidth } = useScreenWidthHeight();
   const { data: products, isLoading } = useQuery(["getProducts"], getProducts);
   const [imgs, setImgs] = useState<string[][] | undefined>(undefined);
   const [imgPos, setImgPos] = useState(0);
+  const { productPos, setProductPos, setShowDSKG } =
+    useContext(EcommerceContext);
 
   useEffect(() => {
     setImgs(products?.map((product) => product.imgs));

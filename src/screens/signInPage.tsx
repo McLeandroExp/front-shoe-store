@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { useForm } from "../../hooks/useForm";
-import { enviarDatosSignIn } from "../../helpers/autenticacion";
+import { useForm } from "../hooks/useForm";
+import { enviarDatosSignIn } from "../helpers/autenticacion";
 import Swal from "sweetalert2";
 import { useContext } from "react";
-import { EcommerceContext } from "../../context/EcommerceContext";
+import { EcommerceContext } from "../context/EcommerceContext";
 import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {

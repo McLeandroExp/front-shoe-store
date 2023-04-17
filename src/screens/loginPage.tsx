@@ -1,10 +1,10 @@
-import { enviarDatos } from "../../helpers/autenticacion";
-import { UsuarioLogin } from "../../types/req_res";
-import { useForm } from "../../hooks/useForm";
+import { enviarDatos } from "../helpers/autenticacion";
+import { UsuarioLogin } from "../types/req_res";
+import { useForm } from "../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useContext } from "react";
-import { EcommerceContext } from "../../context/EcommerceContext";
+import { EcommerceContext } from "../context/EcommerceContext";
 
 function LoginPage() {
   const { formulario, handleChange, reset } = useForm({

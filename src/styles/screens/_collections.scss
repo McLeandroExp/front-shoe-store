@@ -1,0 +1,132 @@
+/* Estilos generales */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $Light-grayish-blue;
+  color: $Very-vark-blue;
+  font-family: sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* Estilos para la sección de categorías y productos */
+.categoria {
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.categoria h2 {
+  color: $Very-vark-blue;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.productos {
+  display: flex;
+  //   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.gender-container {
+  display: flex;
+  //   align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+}
+
+.producto {
+  background-color: $White;
+  border: 1px solid $Grayish-blue;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: calc((100% / 2) - 10px);
+}
+
+.producto h3 {
+  color: $Very-vark-blue;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.producto img {
+  height: 260px;
+  max-width: 100%;
+  object-fit: scale-down;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.producto p {
+  color: $Dark-grayish-blue;
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-align: justify;
+}
+.producto p:last-child {
+  color: $White;
+}
+.producto p span {
+  color: $Very-vark-blue;
+}
+/* Colores */
+.categoria:nth-child(odd) h2 {
+  color: $Orange;
+}
+
+.categoria:nth-child(even) h2 {
+  color: $Very-vark-blue;
+}
+
+.producto:nth-child(odd) {
+  background-color: $Pale-orange;
+}
+
+/* Media queries para dispositivos de 375px a 1440px */
+@media screen and (min-width: 375px) {
+  .producto {
+    width: calc((100% / 2) - 10px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .producto {
+    width: calc((100% / 3) - 13.333px);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .producto {
+    width: calc((100% / 4) - 15px);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .producto {
+    width: calc((100% / 5) - 16px);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .producto p {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .producto p {
+    font-size: 20px;
+  }
+}

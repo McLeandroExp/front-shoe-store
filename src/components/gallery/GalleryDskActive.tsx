@@ -1,31 +1,38 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import { useQuery } from "react-query";
+import { getProducts } from "../../helpers/queries";
+import { EcommerceContext } from "../../context/EcommerceContext";
 // import { useScreenWidthHeight } from "../../hooks/useScreenWidthHeight";
 
-type galleryDskProps = {
-  setShowDSKG: React.Dispatch<React.SetStateAction<boolean>>;
-};
-export const GalleryDskActive = ({ setShowDSKG }: galleryDskProps) => {
-  const [imgPos, setImgPos] = useState(1);
+export const GalleryDskActive = () => {
+  const { setShowDSKG, productPos } = useContext(EcommerceContext);
+  const [imgPos, setImgPos] = useState(0);
   const [direccion, setDireccion] = useState("derecha");
-
+  const [imgs, setImgs] = useState<string[][] | undefined>(undefined);
   const refDiv = useRef<HTMLDivElement | null>(null);
 
-  const [imageUrl, setImageUrl] = useState<string>();
+  const { data: products, isLoading } = useQuery(["getProducts"], getProducts);
 
   useEffect(() => {
-    import(`../../images/image-product-${imgPos}.jpg`).then((url) =>
-      setImageUrl(url.default)
-    );
-  }, [imgPos]);
+    setImgs(products?.map((product) => product.imgs));
+  }, [products]);
 
-  const handleImgMove = (direction: string, limit: number) => {
-    direction === "derecha"
-      ? imgPos < limit
-        ? setImgPos(imgPos + 1)
-        : setImgPos(1)
-      : imgPos > 1
-      ? setImgPos(imgPos - 1)
-      : setImgPos(limit);
+  const handleImgMove = (direction: string, limit: number | undefined) => {
+    if (limit) {
+      direction === "derecha"
+        ? imgPos < limit
+          ? setImgPos(imgPos + 1)
+          : setImgPos(1)
+        : imgPos > 1
+        ? setImgPos(imgPos - 1)
+        : setImgPos(limit);
+    }
   };
   useLayoutEffect(() => {
     const img = document.querySelector(".gdeskimg");
@@ -55,12 +62,21 @@ export const GalleryDskActive = ({ setShowDSKG }: galleryDskProps) => {
             className="gdskbtn"
             aria-label="move left"
             onClick={() => {
-              handleImgMove("izquierda", 4);
+              handleImgMove(
+                "izquierda",
+                imgs ? imgs[productPos].length - 1 : 4
+              );
               setDireccion("izquierda");
             }}
           ></button>
           <img
-            src={imageUrl}
+            src={
+              isLoading
+                ? "./assets/images/loading-img.gif"
+                : imgs
+                ? imgs[productPos][imgPos]
+                : ""
+            }
             alt="product"
             className="gdeskimg animate__animated animate__faster"
           />
@@ -68,7 +84,7 @@ export const GalleryDskActive = ({ setShowDSKG }: galleryDskProps) => {
             aria-label="move right"
             className="gdskbtn scnd"
             onClick={() => {
-              handleImgMove("derecha", 4);
+              handleImgMove("derecha", imgs ? imgs[productPos].length - 1 : 4);
               setDireccion("derecha");
             }}
           ></button>
@@ -79,28 +95,52 @@ export const GalleryDskActive = ({ setShowDSKG }: galleryDskProps) => {
         </div>
         <div className="dskltimgs">
           <img
-            src="./assets/images/image-product-1-thumbnail.jpg"
+            src={
+              isLoading
+                ? "./assets/images/loading-img.gif"
+                : imgs
+                ? imgs[productPos][0]
+                : "./assets/images/image-product-1-thumbnail.jpg"
+            }
+            alt="thumbnail"
+            className="littleimage"
+            onClick={() => setImgPos(0)}
+          />
+          <img
+            src={
+              isLoading
+                ? "./assets/images/loading-img.gif"
+                : imgs
+                ? imgs[productPos][1]
+                : "./assets/images/image-product-1-thumbnail.jpg"
+            }
             alt="thumbnail"
             className="littleimage"
             onClick={() => setImgPos(1)}
           />
           <img
-            src="./assets/images/image-product-2-thumbnail.jpg"
+            src={
+              isLoading
+                ? "./assets/images/loading-img.gif"
+                : imgs
+                ? imgs[productPos][2]
+                : "./assets/images/image-product-1-thumbnail.jpg"
+            }
             alt="thumbnail"
             className="littleimage"
             onClick={() => setImgPos(2)}
           />
           <img
-            src="./assets/images/image-product-3-thumbnail.jpg"
+            src={
+              isLoading
+                ? "./assets/images/loading-img.gif"
+                : imgs
+                ? imgs[productPos][3]
+                : "./assets/images/image-product-1-thumbnail.jpg"
+            }
             alt="thumbnail"
             className="littleimage"
             onClick={() => setImgPos(3)}
-          />
-          <img
-            src="./assets/images/image-product-4-thumbnail.jpg"
-            alt="thumbnail"
-            className="littleimage"
-            onClick={() => setImgPos(4)}
           />
         </div>
       </section>

@@ -1,33 +1,14 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { EcommerceContext } from "../../context/EcommerceContext";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { getProducts } from "../../helpers/queries";
-import { IProducto } from "../../types/models";
+import { ProductInfo } from "../../types/req_res";
+import { AddProductButton } from "./AddProductButton";
 
-interface CommerceProps {
-  setShowCard: React.Dispatch<React.SetStateAction<boolean>>;
-  productPos: number;
-  setProductPos: React.Dispatch<React.SetStateAction<number>>;
-}
-interface ProductInfo {
-  nombre: string;
-  nombre_empresa: string;
-  precio: number;
-  categoria: { nombre: string; _id: string };
-  descripcion: string;
-  descuento: number;
-}
-export const CommerceInfo = ({
-  setShowCard,
-  productPos,
-  setProductPos,
-}: CommerceProps) => {
-  const { nProducts, setNProducts } = useContext(EcommerceContext);
-  const {
-    data: products,
-    isFetched,
-    isLoading,
-  } = useQuery(["getProducts"], getProducts);
+export const CommerceInfo = () => {
+  const { nProducts, setNProducts, productPos, setShowCard } =
+    useContext(EcommerceContext);
+  const { data: products, isLoading } = useQuery(["getProducts"], getProducts);
   const [productInfo, setProductInfo] = useState<ProductInfo[] | undefined>(
     undefined
   );
@@ -79,11 +60,10 @@ export const CommerceInfo = ({
         <div className="sneaker__aft-price">
           <p className="actual-price">
             {productInfo
-              ? `$${
+              ? `$ ${(
                   productInfo[productPos].precio *
-                  productInfo[productPos].descuento *
-                  0.01
-                }`
+                  (1 - productInfo[productPos].descuento * 0.01)
+                ).toFixed(2)}`
               : "$50"}
           </p>
           <p className="discount">
@@ -111,16 +91,7 @@ export const CommerceInfo = ({
           }}
         ></button>
       </article>
-      <div
-        className="add-product-btn"
-        role="button"
-        onClick={() => {
-          nProducts > 0 && setShowCard(true);
-        }}
-      >
-        <div className="buy-icon"></div>
-        <p>Add to card</p>
-      </div>
+      <AddProductButton />
     </div>
   );
 };

@@ -1,13 +1,12 @@
-.heightAll{
+.heightAll {
   height: 100%;
 }
 .galleryDskActive {
-  position: absolute;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
   top: 0;
-  bottom: 0;
-  right: 0;
   left: 0;
-
   // width: 100vw;
   // height: 110vh;
   height: max-content;
@@ -28,7 +27,7 @@
   width: 450px;
   height: 450px;
 }
-.gdeskimg{
+.gdeskimg {
   // display: block;
   border-radius: 20px;
 }
@@ -48,7 +47,7 @@
   background-image: url("./assets/images/icon-previous.svg");
   z-index: 50;
 }
-.scnd{
+.scnd {
   right: -22px;
   background-image: url("./assets/images/icon-next.svg");
 }

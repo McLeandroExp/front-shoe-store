@@ -36,7 +36,8 @@
 }
 .btn-cambiar-img:last-child {
   right: 15px;
-  background-image: url("./assets/images/icon-next.svg");
+  background-image: url("./assets/images/icon-previous.svg");
+  transform: rotate(180deg);
 }
 .littleimages {
   display: none;

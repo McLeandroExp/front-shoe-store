@@ -51,22 +51,15 @@
   width: 0;
 }
 .article_rigth_items {
+  position: relative;
   display: flex;
   justify-self: flex-end;
   align-self: flex-end;
-
-  & img {
-    display: block;
-    height: 20px;
-  }
-
-  & img:last-child {
-    padding-left: 18px;
-  }
 }
 .lcontainer {
   position: relative;
 }
+
 .nlcarticles {
   position: absolute;
   top: -5px;
@@ -79,4 +72,50 @@
   height: 12px;
   font-size: 0.7rem;
   text-align: center;
+}
+.loged_user_elements {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  // gap: 10px;
+  transform: translateY(5px);
+}
+.usr_name {
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+.usr_img {
+  width: 30px;
+  height: 30px;
+  transform: translateY(-7px);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.arrowImg {
+  width: 12px;
+  height: 15px;
+  cursor: pointer;
+  transform: rotate(90deg);
+}
+.google_logout_btn {
+  // display: none;
+  position: absolute;
+  // transform: translate(-80px, 10px);
+  top: 30px;
+  right: 0px;
+  margin: 0;
+  transition: all ease-in 300ms;
+  // border: none;
+}
+.logout_btn {
+  background: $Orange;
+  padding: 7px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  transition: all ease-in 300ms;
+  cursor: pointer;
 }

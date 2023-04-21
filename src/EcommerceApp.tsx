@@ -2,8 +2,6 @@ import { Header } from "./components/Header/Header";
 
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
-import { getProducts } from "./helpers/queries";
 import { ButtonMenu } from "./components/menu/ButtonMenu";
 import { Menu } from "./components/menu/Menu";
 import { useScreenWidthHeight } from "./hooks/useScreenWidthHeight";

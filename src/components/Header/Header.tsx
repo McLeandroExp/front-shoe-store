@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useScreenWidthHeight } from "../../hooks/useScreenWidthHeight";
 import { EcommerceContext } from "../../context/EcommerceContext";
 import { NavLink, useNavigate } from "react-router-dom";
+import { LogoutGoogleBtn } from "../login/LogoutGoogleBtn";
 type HeaderProps = {
   showCard: boolean;
 };
@@ -11,6 +12,11 @@ export const Header = ({ showCard }: HeaderProps) => {
   const { screenWidth } = useScreenWidthHeight();
   const { nProducts, userToken } = useContext(EcommerceContext);
   const navigate = useNavigate();
+  const [showLogout, setShowLogout] = useState(false);
+  const handleShowLogout = () => {
+    setShowLogout((lb) => !lb);
+  };
+
   return (
     <header className="header">
       <section className="menu-logo_container">
@@ -64,11 +70,12 @@ export const Header = ({ showCard }: HeaderProps) => {
             <p className="login_button">Login</p>
           </div>
         ) : (
-          <>
-            <div className="lcontainer">
-              <img src="/assets/images/icon-cart.svg" alt="carritoUwU" />
+          <section className="loged_user_elements">
+            {/* <div className="lcontainer">
+              <img src={"/assets/images/icon-cart.svg"} alt="carritoUwU" />
               {showCard && <div className="nlcarticles">{nProducts}</div>}
-            </div>
+            </div> */}
+            <p className="usr_name">{userToken ? userToken.user.nombre : ""}</p>
             <img
               src={
                 userToken
@@ -78,8 +85,18 @@ export const Header = ({ showCard }: HeaderProps) => {
                   : "./assets/images/image-avatar.png"
               }
               alt="person"
+              className="usr_img"
             />
-          </>
+            {/* <span className="arrowImg">&rarr;</span> */}
+            <img
+              src="./assets/images/icon-next.svg"
+              alt="arrow"
+              className="arrowImg"
+              onClick={handleShowLogout}
+            />
+            {showLogout && <LogoutGoogleBtn />}
+            {/* <LogoutGoogleBtn /> */}
+          </section>
         )}
       </div>
     </header>

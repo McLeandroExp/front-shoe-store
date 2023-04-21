@@ -45,6 +45,11 @@
     background-color: lighten($Orange, 10%);
   }
 }
+.google_login_btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 @media screen and (min-width: 375px) {
   .login-form-container {

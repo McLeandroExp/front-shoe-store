@@ -3,8 +3,10 @@ import { UsuarioLogin } from "../types/req_res";
 import { useForm } from "../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { EcommerceContext } from "../context/EcommerceContext";
+import { gapi } from "gapi-script";
+import { LoginGoogleBtn } from "../components/login/LoginGoogleBtn";
 
 function LoginPage() {
   const { formulario, handleChange, reset } = useForm({
@@ -28,8 +30,10 @@ function LoginPage() {
       const { ok, msg } = resp;
       if (ok) {
         const { usuario, token } = resp;
-        setUserToken({ user: usuario!, token: token! });
-        navigate("/");
+        if (usuario && token) {
+          setUserToken({ user: usuario, token: token });
+          navigate("/");
+        }
       } else {
         Swal.fire({
           title: "Error",
@@ -43,6 +47,22 @@ function LoginPage() {
     }
     reset();
   };
+  const clientId =
+    "455500008473-8rad3d1ogi4f18dv5h5au57v91qj9nrh.apps.googleusercontent.com";
+  useEffect(() => {
+    function start() {
+      // gapi.auth2.getAuthInstance({
+      //   clientId,
+      //   scope: "",
+      // });
+      gapi.client.init({
+        clientId,
+        scope: "",
+      });
+      // gapi.auth.init({clientId : clientId});
+    }
+    gapi.load("client", start);
+  }, []);
 
   const handleAppRegistration = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -50,10 +70,6 @@ function LoginPage() {
     // Handle app registration logic here
     event.preventDefault();
     navigate("/sign");
-  };
-
-  const handleGoogleRegistration = () => {
-    // Handle Google registration logic here
   };
 
   return (
@@ -91,13 +107,10 @@ function LoginPage() {
         >
           Registrate
         </button>
-        <button
-          className="login-form-button"
-          type="button"
-          onClick={handleGoogleRegistration}
-        >
-          Registrarse con Google
-        </button>
+        <LoginGoogleBtn />
+        {/* <div className="login-form-button" onClick={handleGoogleRegistration}> */}
+
+        {/* </div> */}
       </form>
     </section>
   );

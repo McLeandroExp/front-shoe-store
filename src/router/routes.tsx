@@ -1,6 +1,6 @@
 import EcommerceApp from "../EcommerceApp";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { EcommerceContext } from "../context/EcommerceContext";
 import { LandingPage } from "../screens/LandingPage";
 import { Gender } from "../screens/Gender";
@@ -10,9 +10,19 @@ import ErrorPage from "../screens/Error-Page";
 import LoginPage from "../screens/loginPage";
 import SignInPage from "../screens/signInPage";
 import { Collections } from "../screens/Collections";
+import { IUsuario } from "../types/models";
 
 const EcommerceRouter = () => {
-  const { userToken } = useContext(EcommerceContext);
+  const { userToken, setUserToken } = useContext(EcommerceContext);
+  useEffect(() => {
+    const userTokenString = localStorage.getItem("userToken");
+    const userTokenLS: {
+      user: IUsuario;
+      token: string;
+    } | null = userTokenString ? JSON.parse(userTokenString) : null;
+    setUserToken(userTokenLS);
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>

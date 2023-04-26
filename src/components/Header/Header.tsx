@@ -10,7 +10,7 @@ type HeaderProps = {
 export const Header = ({ showCard }: HeaderProps) => {
   const minWidth = 780;
   const { screenWidth } = useScreenWidthHeight();
-  const { nProducts, userToken } = useContext(EcommerceContext);
+  const { userToken } = useContext(EcommerceContext);
   const navigate = useNavigate();
   const [showLogout, setShowLogout] = useState(false);
   const handleShowLogout = () => {
@@ -84,6 +84,7 @@ export const Header = ({ showCard }: HeaderProps) => {
                     : "./assets/images/image-avatar.png"
                   : "./assets/images/image-avatar.png"
               }
+              referrerPolicy="no-referrer"
               alt="person"
               className="usr_img"
             />
@@ -94,7 +95,7 @@ export const Header = ({ showCard }: HeaderProps) => {
               className="arrowImg"
               onClick={handleShowLogout}
             />
-            {showLogout && <LogoutGoogleBtn />}
+            {showLogout && <LogoutGoogleBtn setShowLogout={setShowLogout} />}
             {/* <LogoutGoogleBtn /> */}
           </section>
         )}

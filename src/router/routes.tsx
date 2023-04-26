@@ -11,6 +11,8 @@ import LoginPage from "../screens/loginPage";
 import SignInPage from "../screens/signInPage";
 import { Collections } from "../screens/Collections";
 import { IUsuario } from "../types/models";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { BuyScreen } from "../screens/BuyScreen";
 
 const EcommerceRouter = () => {
   const { userToken, setUserToken } = useContext(EcommerceContext);
@@ -63,6 +65,17 @@ const EcommerceRouter = () => {
             element={<Contact />}
             errorElement={<ErrorPage />}
           />
+          {/* <ProtectedRoute user={userToken}> */}
+          <Route
+            path="/buy"
+            element={
+              <ProtectedRoute user={userToken}>
+                <BuyScreen />
+              </ProtectedRoute>
+            }
+            errorElement={<ErrorPage />}
+          />
+          {/* </ProtectedRoute> */}
         </Route>
 
         <Route

@@ -1,9 +1,9 @@
 .cardbuy {
-  position: absolute;
-  top: 95px;
-  right: 2%;
+  position: fixed;
+  top: 115px;
+  right: 20px;
   // width: 358px;
-  width: 96%;
+  width: 300px;
   border-radius: 15px;
   padding: 30px 0;
   background-color: $White;
@@ -71,6 +71,14 @@ hr {
     color: $Dark-grayish-blue;
   }
 }
+.img-close-card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  height: 17px;
+  cursor: pointer;
+}
 @media screen and (min-width: 780px) {
   .page__content {
     display: flex;
@@ -80,8 +88,7 @@ hr {
     padding-top: 30px;
   }
   .cardbuy {
-    width: 300px;
-    top: 65px;
-    box-shadow: 7px 7px 7px  $Grayish-blue, -7px 0px  7px $Grayish-blue;
+    top: 95px;
+    box-shadow: 7px 7px 7px $Grayish-blue, -7px 0px 7px $Grayish-blue;
   }
 }

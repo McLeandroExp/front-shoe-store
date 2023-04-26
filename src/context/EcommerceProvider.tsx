@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { EcommerceContext } from "./EcommerceContext";
-import { IUsuario } from "../types/models";
+import { IUsuario, ProdAdded, ProductsSold } from "../types/models";
 
 interface props {
   children: JSX.Element | JSX.Element[];
 }
 export const EcommerceProvider = ({ children }: props) => {
   const [productPos, setProductPos] = useState(0);
-  const [nProducts, setNProducts] = useState(0);
 
   const [activeMenu, setActiveMenu] = useState(true);
   const [userToken, setUserToken] = useState<{
@@ -16,12 +15,10 @@ export const EcommerceProvider = ({ children }: props) => {
   } | null>(null);
   const [showCard, setShowCard] = useState<boolean>(false);
   const [showDSKG, setShowDSKG] = useState<boolean>(false);
-
+  const [arrProducts, setArrProducts] = useState<ProdAdded[]>([]);
   return (
     <EcommerceContext.Provider
       value={{
-        nProducts,
-        setNProducts,
         activeMenu,
         setActiveMenu,
         userToken,
@@ -32,6 +29,8 @@ export const EcommerceProvider = ({ children }: props) => {
         setShowDSKG,
         productPos,
         setProductPos,
+        arrProducts,
+        setArrProducts,
       }}
     >
       {children}

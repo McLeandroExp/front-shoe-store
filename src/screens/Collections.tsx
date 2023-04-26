@@ -5,15 +5,23 @@ import { AddProductButton, Buycard, GalleryDskActive } from "../components";
 import { useContext, useEffect, useRef, useState } from "react";
 import { EcommerceContext } from "../context/EcommerceContext";
 import { findStringArrayIndex } from "../helpers/encontrarArreglo";
+import { QuantityController } from "../components/commerceInfo/QuantityController";
 
 export const Collections = () => {
-  const { setProductPos, setShowDSKG, showCard, showDSKG } =
-    useContext(EcommerceContext);
+  const {
+    setProductPos,
+    setShowDSKG,
+    showCard,
+    showDSKG,
+    nProducts,
+    setNProducts,
+  } = useContext(EcommerceContext);
 
   const { data: arrCategoriasConProductos, isLoading } = useQuery<
     CategoriasConUsuarios[] | undefined
   >(["getCollectionsWithProducts"], getCollectionsWithProducts);
   const [imgs, setImgs] = useState<string[][] | undefined>(undefined);
+  const [nProds, setNProds] = useState<number[]>([]);
   useEffect(() => {
     if (arrCategoriasConProductos) {
       let arrImgs = [];
@@ -25,6 +33,12 @@ export const Collections = () => {
       setImgs(arrImgs);
     }
   }, [arrCategoriasConProductos]);
+
+  useEffect(() => {
+    if (imgs) {
+      setNProds(Array(imgs.length).fill(0));
+    }
+  }, []);
 
   if (isLoading || !arrCategoriasConProductos) {
     return <div>Loading...</div>;
@@ -68,7 +82,8 @@ export const Collections = () => {
                     <p>
                       <span>Provider:</span> {producto.nombre_empresa}
                     </p>
-                    <AddProductButton />
+                    {/* <QuantityController id={producto._id} /> */}
+                    <AddProductButton idProduct={producto._id} />
                   </div>
                 );
               })}

@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { getProducts } from "../../helpers/queries";
 import { ProductInfo } from "../../types/req_res";
 import { AddProductButton } from "./AddProductButton";
+import { QuantityController } from "./QuantityController";
 
 export const CommerceInfo = () => {
   const { nProducts, setNProducts, productPos, setShowCard } =
@@ -22,6 +23,7 @@ export const CommerceInfo = () => {
           categoria,
           descripcion,
           descuento,
+          _id,
         }) => ({
           nombre,
           nombre_empresa,
@@ -29,6 +31,7 @@ export const CommerceInfo = () => {
           categoria,
           descripcion,
           descuento,
+          _id,
         })
       );
       setProductInfo(prod);
@@ -74,7 +77,7 @@ export const CommerceInfo = () => {
           {productInfo ? `$ ${productInfo[productPos].precio}` : "$50"}
         </div>
       </article>
-      <article className="price-controllers">
+      {/* <article className="price-controllers">
         <button
           className="change_price"
           aria-label="add product"
@@ -90,8 +93,10 @@ export const CommerceInfo = () => {
             setNProducts(nProducts + 1);
           }}
         ></button>
-      </article>
-      <AddProductButton />
+      </article> */}
+      <AddProductButton
+        idProduct={productInfo ? productInfo[productPos]._id : ""}
+      />
     </div>
   );
 };

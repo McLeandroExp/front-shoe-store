@@ -15,6 +15,7 @@ interface ICategoria {
 }
 
 interface IProducto {
+  _id: string;
   nombre: string;
   estado: boolean;
   usuario: string;
@@ -30,4 +31,12 @@ interface IProducto {
   sexo: string;
   nombre_empresa: string;
 }
-export type { IUsuario, ICategoria, IProducto };
+interface ProdAdded {
+  id: string;
+  cantidad: number;
+}
+interface ProductsSold {
+  arrProductos: ProdAdded[];
+  usuario: String;
+}
+export type { IUsuario, ICategoria, IProducto, ProductsSold, ProdAdded };

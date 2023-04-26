@@ -1,8 +1,6 @@
 import { createContext } from "react";
-import { IUsuario } from "../types/models";
+import { IUsuario, ProdAdded, ProductsSold } from "../types/models";
 export type EcommerceContextProps = {
-  nProducts: number;
-  setNProducts: React.Dispatch<React.SetStateAction<number>>;
   activeMenu: boolean;
   setActiveMenu: React.Dispatch<React.SetStateAction<boolean>>;
   userToken: { user: IUsuario; token: string } | null;
@@ -15,6 +13,8 @@ export type EcommerceContextProps = {
   setShowDSKG: React.Dispatch<React.SetStateAction<boolean>>;
   productPos: number;
   setProductPos: React.Dispatch<React.SetStateAction<number>>;
+  arrProducts: ProdAdded[];
+  setArrProducts: React.Dispatch<React.SetStateAction<ProdAdded[]>>;
 };
 export const EcommerceContext = createContext<EcommerceContextProps>(
   {} as EcommerceContextProps

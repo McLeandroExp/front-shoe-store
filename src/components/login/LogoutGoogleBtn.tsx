@@ -1,8 +1,15 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { GoogleLogout } from "react-google-login";
 import { useNavigate } from "react-router-dom";
 import { EcommerceContext } from "../../context/EcommerceContext";
-export const LogoutGoogleBtn = () => {
+
+interface LogoutGoogleBtnProps {
+  setShowLogout: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const LogoutGoogleBtn: FC<LogoutGoogleBtnProps> = ({
+  setShowLogout,
+}) => {
   const navigate = useNavigate();
   const { setUserToken, userToken } = useContext(EcommerceContext);
   const clientId =
@@ -10,6 +17,7 @@ export const LogoutGoogleBtn = () => {
 
   const logoutSuccess = () => {
     setUserToken(null);
+    setShowLogout(false);
     localStorage.clear();
     navigate("/");
   };

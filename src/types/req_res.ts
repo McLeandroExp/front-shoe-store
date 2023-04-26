@@ -28,6 +28,7 @@ type UsuarioRegisterResp = {
   errors: errorObj[] | null;
 };
 interface ProductInfo {
+  _id: string;
   nombre: string;
   nombre_empresa: string;
   precio: number;

@@ -59,7 +59,7 @@ export const Gender: FC<GenderProps> = ({ gender }) => {
           <p>
             <span>Provider:</span> {producto.nombre_empresa}
           </p>
-          <AddProductButton />
+          <AddProductButton idProduct={producto._id} />
         </div>
       ))}
       {showCard && <Buycard />}
